@@ -6,7 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "PlexToolMixin"
+    "PlexToolPackets",
+    "PlexToolUIMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -4,9 +4,6 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.cscherr.plextool.PlexMenu;
-import de.cscherr.plextool.mixin.PlexToolMixin;
-
 public class PlexTool implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
@@ -15,8 +12,6 @@ public class PlexTool implements ModInitializer {
 	public static final String VERSION_NUMBER = "0.1.0";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	public PlexMenu menu;
-
 	@Override
 	public void onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
@@ -24,6 +19,5 @@ public class PlexTool implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Initializing PlexTool");
-		menu = new PlexMenu();
 	}
 }
