@@ -9,35 +9,48 @@ import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import net.minecraft.client.gui.widget.ButtonWidget;
+import org.slf4j.event.Level;
 
 public class PlexToolUiScreen extends Screen {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PlexToolUiScreen.class.getSimpleName());
+    private static final Logger LOGGER = PlexTool.LOGGER;
     private static final Text INFO_TEXT = Text.literal("Hello world");
     private final Screen parent;
+    private ButtonWidget doneButton;
+    private ButtonWidget dummyButton;
 
-    public PlexToolUiScreen(String name, Screen parent) {
-        super(Text.literal(name));
+    public PlexToolUiScreen(Text name, Screen parent) {
+        super(name);
+        LOGGER.trace("Constructing the UI, call to super is done");
         this.parent = parent;
-        LOGGER.info("Constructed the UI");
+        LOGGER.info("Constructed the UI Screen");
+    }
+
+    public PlexToolUiScreen(Text name) {
+        super(name);
+        LOGGER.trace("Constructing the UI, call to super is done");
+        this.parent = null;
+        LOGGER.info("Constructed the UI Screen without a parent");
     }
     @Override
     protected void init() {
-        //assert this.client != null;
-        //Window window = this.client.getWindow();
-        //Monitor monitor = window.getMonitor();
+        LOGGER.trace(PlexToolUiScreen.class.getSimpleName() + " init started");
 
-        this.addDrawable(ButtonWidget.builder(INFO_TEXT, button -> {
-            LOGGER.info("Pressed dummy button");
-        }).dimensions(this.width / 2 - 100, this.height - 10, 200, 20).build());
-        //this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, button -> {
-        //    this.client.options.write();
-        //    this.apply();
-        //    this.client.setScreen(this.parent);
-        //}).dimensions(this.width / 2 - 100, this.height - 27, 200, 20).build());
+        dummyButton = ButtonWidget.builder(Text.literal("Dummy"), b -> apply()).build();
+        doneButton = ButtonWidget.builder(Text.literal("Done"), b -> apply()).build();
+
+        this.addDrawableChild(doneButton);
+
+        LOGGER.info(PlexToolUiScreen.class.getSimpleName() + " init finished");
     }
 
     private void apply() {
+        LOGGER.trace("applying PlexToolUI Options, not implemented");
 
+        // return to the parent screen, should be OptionsScreen
+        assert client != null;
+        client.setScreen(parent);
+        this.close();
     }
 }

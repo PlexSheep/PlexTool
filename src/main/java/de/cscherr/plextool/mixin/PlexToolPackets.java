@@ -1,5 +1,6 @@
 package de.cscherr.plextool.mixin;
 
+import de.cscherr.plextool.PlexTool;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.PacketCallbacks;
 import net.minecraft.network.listener.PacketListener;
@@ -42,7 +43,7 @@ public class PlexToolMixin {
 @Mixin(ClientConnection.class)
 public class PlexToolPackets {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger("PlexToolMixin");
+	private static final Logger LOGGER = PlexTool.LOGGER;
 	private static boolean logSent = true;
 	private static boolean logReceived = false;
 
